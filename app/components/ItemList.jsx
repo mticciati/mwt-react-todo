@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Item(props) {
+export function Item(props) {
   return (
     <li>{props.text}</li>
   );
