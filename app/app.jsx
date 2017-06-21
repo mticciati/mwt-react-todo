@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory'
 
+import TodoApp from 'TodoApp';
+
 //Load Foundation
 $(document).foundation();
 
@@ -13,6 +15,6 @@ const history = createBrowserHistory();
 require('style-loader!css-loader!sass-loader!applicationStyles');
 
 ReactDOM.render(
-  <p>Boilerplate3 Project</p>,
+  <TodoApp />,
   document.getElementById("app")
 ); 
