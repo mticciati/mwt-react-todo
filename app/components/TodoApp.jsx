@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ItemList from 'ItemList';
+import itemList from 'ItemList';
 
 class TodoApp extends React.Component {
 
@@ -16,7 +16,7 @@ class TodoApp extends React.Component {
     return (
       <div>
         <h1>TodoApp</h1>
-        {ItemList(todos)}
+        {itemList(todos)}
       </div>
     );
   }
