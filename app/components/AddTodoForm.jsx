@@ -15,7 +15,10 @@ export default class AddTodoForm extends React.Component {
     if (text !== '') {
       this.refs.text.value = '';
       this.props.onAddTodo(text);
+    } else {
+      this.refs.text.focus();
     }
+
   }
 
   render() {
