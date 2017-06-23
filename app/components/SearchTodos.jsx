@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class SearchTodos extends Component {
 
@@ -40,6 +41,10 @@ class SearchTodos extends Component {
     );
   }
 
+}
+
+SearchTodos.propTypes = {
+  onSearch: PropTypes.func.isRequired
 }
 
 export default SearchTodos;
