@@ -33,7 +33,7 @@ class SearchTodos extends Component {
               type="checkbox"
               ref="showCompleted"
               onChange={this.handleSearch}/>
-            Show Completed
+            Show completed todos
           </label>
         </div>
       </div>
