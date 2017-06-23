@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid';
 
 import itemList from 'ItemList';
 import AddTodoForm from 'AddTodoForm';
@@ -9,7 +10,7 @@ class TodoApp extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handlAddTodo = this.handleAddTodo.bind(this);
+    this.handleAddTodo = this.handleAddTodo.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.state = {
       todos: props.todos,
@@ -23,7 +24,15 @@ class TodoApp extends React.Component {
   }
 
   handleAddTodo(text) {
-    alert('new todo: ' + text);
+    this.setState({
+      todos: [
+        ...this.state.todos,
+        {
+          id: uuid(), 
+          text: text
+        }
+      ]
+    });
   }
 
   render() {
@@ -43,11 +52,11 @@ class TodoApp extends React.Component {
 TodoApp.defaultProps = {
   todos: [
     {
-      id: 1,
+      id: uuid(),
       text: 'Walk the cat'
     },
     {
-      id: 2,
+      id: uuid(),
       text: 'Bow to the cat'
     }
   ]
