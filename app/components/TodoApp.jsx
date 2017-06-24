@@ -12,7 +12,7 @@ class TodoApp extends React.Component {
 
     this.handleAddTodo = this.handleAddTodo.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    this.onToggle = this.onToggle.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
     this.state = {
       todos: props.todos,
       showCompleted: false,
