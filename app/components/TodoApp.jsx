@@ -1,7 +1,7 @@
 import React from 'react';
 import uuid from 'uuid';
 
-import itemList from 'ItemList';
+import ItemList from 'ItemList';
 import AddTodoForm from 'AddTodoForm';
 import SearchTodos from 'SearchTodos';
 
@@ -12,6 +12,7 @@ class TodoApp extends React.Component {
 
     this.handleAddTodo = this.handleAddTodo.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.onToggle = this.onToggle.bind(this);
     this.state = {
       todos: props.todos,
       showCompleted: false,
@@ -29,10 +30,15 @@ class TodoApp extends React.Component {
         ...this.state.todos,
         {
           id: uuid(), 
-          text: text
+          text: text,
+          completed: false
         }
       ]
     });
+  }
+
+  handleToggle(id) {
+    alert(id);
   }
 
   render() {
@@ -41,7 +47,7 @@ class TodoApp extends React.Component {
       <div>
         <h1>TodoApp</h1>
         <SearchTodos onSearch={this.handleSearch} />
-        {itemList(todos)}
+        <ItemList items={todos} onToggle={this.handleToggle} />
         <AddTodoForm onAddTodo={this.handleAddTodo} />
       </div>
     );
@@ -53,11 +59,13 @@ TodoApp.defaultProps = {
   todos: [
     {
       id: uuid(),
-      text: 'Walk the cat'
+      text: 'Walk the cat',
+      completed: true
     },
     {
       id: uuid(),
-      text: 'Bow to the cat'
+      text: 'Bow to the cat',
+      completed: false
     }
   ]
 };
