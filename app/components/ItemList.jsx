@@ -9,7 +9,7 @@ export default class ItemList extends Component {
   }
 
   render() {
-    const {items} = this.props;
+    let {items} = this.props;
     return (
       <div>
         <ul className="item-list">

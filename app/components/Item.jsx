@@ -7,14 +7,14 @@ export default class Item extends Component {
   }
 
   render() {
-    let {id, checked, text} = this.props
+    let {id, completed, text} = this.props
     return (
       <li className="item" onClick={() => this.props.onToggle(id)}>
         <label>
           <input 
             type="checkbox"
             ref="completed"
-            checked={checked}
+            defaultChecked={completed}
           />
           {text}
         </label>
@@ -24,11 +24,11 @@ export default class Item extends Component {
 }
 
 Item.propTypes = {
-  checked: PropTypes.boolean,
+  completed: PropTypes.bool,
   text: PropTypes.string,
   onToggle: PropTypes.func.isRequired
 }
 Item.defaultProps = {
-  checked: false,
+  completed: false,
   text: ''
 }
