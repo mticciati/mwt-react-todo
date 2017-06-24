@@ -27,4 +27,21 @@ describe('TodoApp', () => {
     expect(todoApp.state.todos[0].text).toBe(todoText);
   });
 
+  it('should toggle todos state with handleToggle', () => {
+    let todo = {
+      id: 11,
+      text: 'hello',
+      completed: false
+    };
+    let todoApp = ReactTestUtils.renderIntoDocument(<TodoApp />);
+    todoApp.setState({todos: [todo]});
+
+    expect(todoApp.state.todos[0].completed).toBe(false);
+
+    todoApp.handleToggle(11);
+
+    expect(todoApp.state.todos[0].completed).toBe(true);
+
+  });
+
 });

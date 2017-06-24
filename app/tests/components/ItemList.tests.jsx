@@ -21,7 +21,8 @@ describe('ItemList', () =>{
         text: 'do something else'
       }
     ];
-    const itemList = ReactTestUtils.renderIntoDocument(<ItemList items={todos} />);
+    let dummyFunc = () => 'hello';
+    const itemList = ReactTestUtils.renderIntoDocument(<ItemList items={todos} onToggle={dummyFunc} />);
     let $el = $(ReactDOM.findDOMNode(itemList));
     let items = $el.find('.item');
     let length = items.length;
