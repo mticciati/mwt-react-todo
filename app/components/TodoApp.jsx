@@ -4,6 +4,7 @@ import uuid from 'uuid';
 import ItemList from 'ItemList';
 import AddTodoForm from 'AddTodoForm';
 import SearchTodos from 'SearchTodos';
+import TodoAPI from 'TodoAPI';
 
 class TodoApp extends React.Component {
 
@@ -14,10 +15,14 @@ class TodoApp extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.state = {
-      todos: props.todos,
+      todos: TodoAPI.getTodos(),
       showCompleted: false,
       searchText: ''
     };
+  }
+
+  componentDidUpdate() {
+    TodoAPI.setTodos(this.state.todos);
   }
 
   handleSearch(data) {
@@ -61,20 +66,5 @@ class TodoApp extends React.Component {
   }
 
 }
-
-TodoApp.defaultProps = {
-  todos: [
-    {
-      id: uuid(),
-      text: 'Walk the cat',
-      completed: true
-    },
-    {
-      id: uuid(),
-      text: 'Bow to the cat',
-      completed: false
-    }
-  ]
-};
 
 export default TodoApp;

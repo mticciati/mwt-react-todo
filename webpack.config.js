@@ -38,6 +38,7 @@ module.exports = {
       Item: 'app/components/Item.jsx',
       AddTodoForm: 'app/components/AddTodoForm.jsx',
       SearchTodos: 'app/components/SearchTodos.jsx',
+      TodoAPI: 'app/api/TodoAPI.jsx',
       applicationStyles: 'app/styles/app.scss'
     },
     extensions: ['*', '.js', '.jsx'] 
