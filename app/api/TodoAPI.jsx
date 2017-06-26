@@ -25,6 +25,23 @@ module.exports = {
     // filter by showCompleted 
     filteredTodos = filteredTodos.filter((todo) => !todo.completed || showCompleted);
 
+    // filter by searchText
+    // if (searchText.length > 0) {
+    //  filteredTodos = filteredTodos.filter((todo) => todo.includes(searchText))
+    // }
+
+    // sort todos by non-completed first
+    filteredTodos.sort((a, b) => {
+      if (!a.completed && b.completed) {
+        return -1;
+      } else if (a.completed && !b.completed) {
+        return 1;
+      } else {
+        return 0;
+      }
+
+    });
+
     return filteredTodos;
   }
 }
