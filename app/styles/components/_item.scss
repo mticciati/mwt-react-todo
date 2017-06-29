@@ -1,0 +1,31 @@
+.item {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  padding: 1rem;
+  transition: background .3s ease;
+
+  p,
+  input {
+    margin: 0;
+  }
+
+  > :first-child {
+    margin-right: 1rem;
+  }
+
+  &:hover {
+    background: $item-hover-bg;
+  }
+}
+
+.item__subtext {
+  color: $item-subtext-color;
+}
+
+.item-completed {
+  p, .todo__subtext {
+    color: $light-color;
+    text-decoration: line-through;
+  }
+}

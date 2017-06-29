@@ -30,4 +30,13 @@ describe('ItemList', () =>{
 
   });
 
+  it('should render empty message if no todos', () => {
+    let dummyFunc = () => 'hello';
+    let todos = [];
+    const itemList = ReactTestUtils.renderIntoDocument(<ItemList items={todos} onToggle={dummyFunc} />);
+    let $el = $(ReactDOM.findDOMNode(itemList));
+    
+    expect($el.find('.container__message').length).toBe(1);
+  });
+
 });

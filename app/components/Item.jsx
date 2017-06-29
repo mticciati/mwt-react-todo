@@ -9,6 +9,7 @@ export default class Item extends Component {
 
   render() {
     let {id, completed, text, createdAt, completedAt} = this.props;
+    let itemClassName = completed ? 'item item-completed' : 'item';
     const renderDate = () => {
       let message = 'Created ';
       let timestamp = createdAt;
@@ -20,16 +21,18 @@ export default class Item extends Component {
       return message + moment.unix(timestamp).format('MMMM Do, YYYY @ h:mm A');
     }
     return (
-      <div className="item" onClick={() => this.props.onToggle(id)}>
-        <label>
+      <div className={itemClassName} onClick={() => this.props.onToggle(id)}>
+        <div>
           <input 
             type="checkbox"
             ref="completed"
             defaultChecked={completed}
           />
-          {text} <br/>
-          {renderDate()}
-        </label>
+        </div>
+        <div>
+          <p>{text}</p>
+          <p className="item__subtext">{renderDate()}</p>
+        </div>
       </div>
     );
   }
