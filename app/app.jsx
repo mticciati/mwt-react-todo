@@ -4,12 +4,21 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory'
 
 import TodoApp from 'TodoApp';
-import * as action from './actions/actions';
-import configure from 'store/configureStore';
+import * as actions from './actions/actions';
+import {configure} from './store/configureStore';
 
 //Load Foundation
 $(document).foundation();
 
+//Store
+let store = configure();
+store.subscribe(() => {
+  console.log('New State', store.getState());
+});
+
+store.dispatch(actions.addTodo('Bow to the cat'));
+store.dispatch(actions.setSearchText('cat'));
+store.dispatch(actions.toggleShowCompleted());
 
 //browser history
 const history = createBrowserHistory();

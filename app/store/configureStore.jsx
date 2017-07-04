@@ -3,9 +3,9 @@ import * as reducers from '../reducers/reducers';
 
 export const configure = () => {
   const reducer = combineReducers({
-    searchText: searchTextReducer,
-    showCompleted: showCompletedReducer,
-    todos: todosReducer
+    searchText: reducers.searchTextReducer,
+    showCompleted: reducers.showCompletedReducer,
+    todos: reducers.todosReducer
   });
 
   //can also be comineReducers(reducers);
