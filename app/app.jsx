@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import createBrowserHistory from 'history/createBrowserHistory'
+import createBrowserHistory from 'history/createBrowserHistory';
+import {Provider} from 'react-redux';
 
 import TodoApp from 'TodoApp';
 import * as actions from './actions/actions';
@@ -26,6 +27,8 @@ const history = createBrowserHistory();
 require('style-loader!css-loader!sass-loader!applicationStyles');
 
 ReactDOM.render(
-  <TodoApp />,
+  <Provider store={store}>
+    <TodoApp />
+  </Provider>,
   document.getElementById("app")
 ); 
