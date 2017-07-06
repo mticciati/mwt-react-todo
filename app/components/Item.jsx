@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-const renderDate = (createdAt, completed, completedAt = undefined) => {
+let renderDate = (createdAt, completed, completedAt = undefined) => {
       let message = 'Created ';
       let timestamp = createdAt;
 
@@ -23,7 +23,6 @@ const Item = ({id, completed, text, createdAt, completedAt, onToggle}) => (
     <div>
       <input 
         type="checkbox"
-        // ref="completed"
         defaultChecked={completed}
       />
     </div>

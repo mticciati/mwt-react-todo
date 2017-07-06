@@ -12,18 +12,21 @@ describe('Item', () => {
     expect(Item).toExist();
   });
 
-  it ('should call onToggle with item id when li clicked', () => {
+  it ('should dispatch TOGGLE_TODO action with item id when li clicked', () => {
     let todo = {
       id: 11,
       text: 'hello',
       completed: false
     };
     let spy = expect.createSpy();
-    let item = ReactTestUtils.renderIntoDocument(<Item {...todo} onToggle={spy} />);
+    let item = ReactTestUtils.renderIntoDocument(<Item {...todo} dispatch={spy} />);
     let $el = $(ReactDOM.findDOMNode(item));
 
     ReactTestUtils.Simulate.click($el[0]);
-    expect(spy).toHaveBeenCalledWith(todo.id);
+    expect(spy).toHaveBeenCalledWith({
+      type: 'TOGGLE_TODO',
+      id: todo.id
+    });
 
   });
 
