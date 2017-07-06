@@ -14,7 +14,6 @@ class TodoApp extends React.Component {
 
     this.handleAddTodo = this.handleAddTodo.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    // this.handleToggle = this.handleToggle.bind(this);
     this.state = {
       todos: TodoAPI.getTodos(),
       showCompleted: false,
@@ -44,18 +43,6 @@ class TodoApp extends React.Component {
       ]
     });
   }
-
-  // handleToggle(id) {
-  //   let updatedTodos = this.state.todos.map((todo) => {
-  //     if (todo.id === id) {
-  //       todo.completed = !todo.completed;
-  //       todo.completedAt = todo.completed ? moment().unix() : undefined;
-  //     }
-  //     return todo;
-  //   });
-
-  //   this.setState({ todos: updatedTodos });
-  // }
 
   render() {
     let {todos, showCompleted, searchText} = this.state;

@@ -11,7 +11,7 @@ const renderItems = (items, onToggle) => {
     );
   }
   return (
-    items.map((item) => <Item key={item.id} {...item} />)
+    items.map((item) => <Item key={item.id} {...item} onToggle={() => onToggle(item.id)} />)
   );
 }
 

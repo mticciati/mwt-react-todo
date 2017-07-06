@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-const renderDate = (createAt, completedAt = undefined) => {
+const renderDate = (createdAt, completed, completedAt = undefined) => {
       let message = 'Created ';
       let timestamp = createdAt;
 
@@ -14,35 +14,24 @@ const renderDate = (createAt, completedAt = undefined) => {
     }
 
 const Item = ({id, completed, text, createdAt, completedAt, onToggle}) => (
-  // constructor(props) {
-  //   super(props);
-  // }
-
-  // render() {
-    // let {id, completed, text, createdAt, completedAt} = this.props;
-    // let itemClassName = ;
-    
-    // return (
-      <div 
-        className={
-          completed ? 'item item-completed' : 'item'
-        } 
-        onClick={onToggle}
-      >
-        <div>
-          <input 
-            type="checkbox"
-            ref="completed"
-            defaultChecked={completed}
-          />
-        </div>
-        <div>
-          <p>{text}</p>
-          <p className="item__subtext">{renderDate(createdAt, completedAt)}</p>
-        </div>
-      </div>
-    // );
-  // }
+  <div 
+    className={
+      completed ? 'item item-completed' : 'item'
+    } 
+    onClick={onToggle}
+  >
+    <div>
+      <input 
+        type="checkbox"
+        // ref="completed"
+        defaultChecked={completed}
+      />
+    </div>
+    <div>
+      <p>{text}</p>
+      <p className="item__subtext">{renderDate(createdAt, completed, completedAt)}</p>
+    </div>
+  </div>
 )
 
 Item.propTypes = {
