@@ -2,9 +2,34 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import expect, {createSpy, isSpy, spyOn} from 'expect';
-import ItemList from 'ItemList';
+import {Provider} from 'react-redux';
+import {configure} from '../../store/configureStore';
 
-describe('ItemList', () =>{
+import ItemList from 'ItemList';
+import VisibleItemList from '../../containers/VisibleItemList';
+
+describe('ItemList', () => {
+
+  beforeEach(() => {
+    
+    //Store
+    let store = configure();
+    store.subscribe();
+
+    let todos = [
+      {
+        id: 11,
+        text: 'hello',
+        completed: false
+      }
+    ];
+
+    const wrapper = ReactTestUtils.renderIntoDocument(
+      <Provider store={store}>
+        <VisibleItemList />
+      </Provider>
+    )
+  });
 
   it('ItemList should exist', () => {
     expect(ItemList).toExist();
