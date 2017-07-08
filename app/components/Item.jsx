@@ -2,17 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-// let renderDate = (createdAt, completed, completedAt = undefined) => {
-//       let message = 'Created ';
-//       let timestamp = createdAt;
-
-//       if (completed) {
-//         message = 'Completed ';
-//         timestamp = completedAt;
-//       } 
-//       return message + moment.unix(timestamp).format('MMMM Do, YYYY @ h:mm A');
-//     }
-
 const Item = ({id, completed, text, createdAt, completedAt, onToggle}) => {
   let message = 'Created ';
   let timestamp = createdAt;
