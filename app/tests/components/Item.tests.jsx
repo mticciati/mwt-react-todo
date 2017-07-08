@@ -2,44 +2,49 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import expect, {createSpy} from 'expect';
-import {toggleTodo} from '../../actions/actions';
 
 var $ = require('jQuery');
 
 import Item from 'Item';
 
 describe('Item', () => {
+  let instance, li, spy, todo;
+  todo = {
+    id: 11,
+    text: 'hello',
+    completed: false,
+    createdAt: 123,
+    completedAt: undefined
+  };
+  spy = expect.createSpy();
+  class Wrapper extends React.Component {
+    constructor(props) {
+      super(props)
+    }
+    render() {
+      return (
+        this.props.children
+      );
+    }  
+  }
 
-  // beforeEach(() => {
-  //   let spyToggle = expect.createSpy(() => toggleTodo(11));
-  //   let todo = {
-  //     id: 11,
-  //     text: 'hello',
-  //     completed: false
-  //   };
-  //   const item = ReactTestUtils.renderIntoDocument(<Item {...todo} onToggle={spyToggle} />);
-  // });
+  beforeEach(() => {
+    instance = ReactTestUtils.renderIntoDocument(
+      <Wrapper>
+        <Item {...todo} onToggle={spy} />
+      </Wrapper>
+    );
+  });
 
   it('should exist', () => {
     expect(Item).toExist();
   });
 
   it ('should dispatch TOGGLE_TODO action with item id when li clicked', () => {
-    let todo = {
-      id: 11,
-      text: 'hello',
-      completed: false
-    };
-    let spy = expect.createSpy(() => toggleTodo(todo.id));
-    let item = ReactTestUtils.renderIntoDocument(<Item {...todo} onToggle={spy} />);
-    // let $el = $(ReactDOM.findDOMNode(item));
-    let $el = $(item).find('.item');
-
-    ReactTestUtils.Simulate.click($el);
-    expect(spy).toHaveBeenCalledWith({
-      type: 'TOGGLE_TODO',
-      id: todo.id
-    });
+    
+    let $el = $(ReactDOM.findDOMNode(instance));
+    ReactTestUtils.Simulate.click($el[0]);
+    expect(spy).toHaveBeenCalled();
 
   });
 

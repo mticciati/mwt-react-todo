@@ -2,36 +2,47 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-let renderDate = (createdAt, completed, completedAt = undefined) => {
-      let message = 'Created ';
-      let timestamp = createdAt;
+// let renderDate = (createdAt, completed, completedAt = undefined) => {
+//       let message = 'Created ';
+//       let timestamp = createdAt;
 
-      if (completed) {
-        message = 'Completed ';
-        timestamp = completedAt;
+//       if (completed) {
+//         message = 'Completed ';
+//         timestamp = completedAt;
+//       } 
+//       return message + moment.unix(timestamp).format('MMMM Do, YYYY @ h:mm A');
+//     }
+
+const Item = ({id, completed, text, createdAt, completedAt, onToggle}) => {
+  let message = 'Created ';
+  let timestamp = createdAt;
+
+  if (completed) {
+    message = 'Completed ';
+    timestamp = completedAt;
+  } 
+  return (
+    <div 
+      className={
+        completed ? 'item item-completed' : 'item'
       } 
-      return message + moment.unix(timestamp).format('MMMM Do, YYYY @ h:mm A');
-    }
-
-const Item = ({id, completed, text, createdAt, completedAt, onToggle}) => (
-  <div 
-    className={
-      completed ? 'item item-completed' : 'item'
-    } 
-    onClick={onToggle}
-  >
-    <div>
-      <input 
-        type="checkbox"
-        defaultChecked={completed}
-      />
+      onClick={onToggle}
+    >
+      <div>
+        <input 
+          type="checkbox"
+          defaultChecked={completed}
+        />
+      </div>
+      <div>
+        <p>{text}</p>
+        <p className="item__subtext">{
+          message + moment.unix(timestamp).format('MMMM Do, YYYY @ h:mm A')
+        }</p>
+      </div>
     </div>
-    <div>
-      <p>{text}</p>
-      <p className="item__subtext">{renderDate(createdAt, completed, completedAt)}</p>
-    </div>
-  </div>
-)
+  )
+}
 
 Item.propTypes = {
   completed: PropTypes.bool,
