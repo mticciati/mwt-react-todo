@@ -1,22 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
-import expect, {createSpy, isSpy, spyOn} from 'expect';
+import expect from 'expect';
+import {Provider} from 'react-redux';
+import {configure} from '../../store/configureStore';
 
 import ItemList from 'ItemList';
 import VisibleItemList from '../../containers/VisibleItemList';
+import Item from 'Item';
 
 describe('ItemList', () => {
-  class Wrapper extends React.Component {
-    constructor(props) {
-      super(props)
-    }
-    render() {
-      return (
-        this.props.children
-      );
-    }  
-  }
+  // class Wrapper extends React.Component {
+  //   constructor(props) {
+  //     super(props)
+  //   }
+  //   render() {
+  //     return (
+  //       this.props.children
+  //     );
+  //   }  
+  // }
 
   it('ItemList should exist', () => {
     expect(ItemList).toExist();
@@ -27,36 +30,48 @@ describe('ItemList', () => {
       {
         id: '1',
         text: 'do something',
-        completed: false
+        completed: false,
+        createdAt: 123,
+        completedAt: undefined
       },
       {
         id: '2',
         text: 'do something else',
-        completed: false
+        completed: false,
+        createdAt: 300,
+        completedAt: undefined
       }
     ];
-    let dummyFunc = () => 'hello';
-    const itemList = ReactTestUtils.renderIntoDocument(
-      <Wrapper>
-        <ItemList items={todos} onToggle={dummyFunc} />
-      </Wrapper>
+
+    let store = configure({
+      todos
+    });
+
+    const provider = ReactTestUtils.renderIntoDocument(
+      <Provider store={store}>
+        <VisibleItemList />
+      </Provider>
     );
-    let $el = $(ReactDOM.findDOMNode(itemList));
+
+    let $el = $(ReactDOM.findDOMNode(provider));
     let items = $el.find('.item');
-    let length = items.length;
-    expect(length).toBe(2);
+
+    expect(items.length).toBe(todos.length);
 
   });
 
   it('should render empty message if no todos', () => {
-    let dummyFunc = () => 'hello';
     let todos = [];
-    const itemList = ReactTestUtils.renderIntoDocument(
-        <Wrapper>
-          <ItemList items={todos} onToggle={dummyFunc} />
-        </Wrapper>
-      );    let $el = $(ReactDOM.findDOMNode(itemList));
-    
+    let store = configure({
+      todos
+    });
+    const provider = ReactTestUtils.renderIntoDocument(
+      <Provider store={store}>
+        <VisibleItemList />
+      </Provider>
+    );
+    let $el = $(ReactDOM.findDOMNode(provider));
+
     expect($el.find('.container__message').length).toBe(1);
   });
 

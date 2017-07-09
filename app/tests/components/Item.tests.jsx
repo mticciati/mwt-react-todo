@@ -28,21 +28,19 @@ describe('Item', () => {
     }  
   }
 
-  beforeEach(() => {
-    instance = ReactTestUtils.renderIntoDocument(
-      <Wrapper>
-        <Item {...todo} onToggle={spy} />
-      </Wrapper>
-    );
-  });
-
   it('should exist', () => {
     expect(Item).toExist();
   });
 
-  it ('should dispatch TOGGLE_TODO action with item id when li clicked', () => {
-    
+  // it ('should dispatch TOGGLE_TODO action with item id when li clicked', () => {
+  it ('should call spy when li clicked', () => {
+    instance = ReactTestUtils.renderIntoDocument(
+      <Wrapper>
+       <Item {...todo} onToggle={spy} />
+      </Wrapper>
+    );
     let $el = $(ReactDOM.findDOMNode(instance));
+    console.log($el);
     ReactTestUtils.Simulate.click($el[0]);
     expect(spy).toHaveBeenCalled();
 

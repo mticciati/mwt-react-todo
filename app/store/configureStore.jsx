@@ -1,7 +1,7 @@
 import {combineReducers, compose, createStore} from 'redux';
 import * as reducers from '../reducers/reducers';
 
-export const configure = () => {
+export const configure = (initialState = {}) => {
   const reducer = combineReducers({
     searchText: reducers.searchTextReducer,
     showCompleted: reducers.showCompletedReducer,
@@ -10,7 +10,7 @@ export const configure = () => {
 
   //can also be comineReducers(reducers);
 
-  let store = createStore(reducer, compose(
+  let store = createStore(reducer, initialState, compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ));
 
