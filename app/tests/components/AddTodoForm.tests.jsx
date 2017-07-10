@@ -5,33 +5,36 @@ import expect, {createSpy} from 'expect';
 var $ = require('jQuery');
 
 import AddTodoForm from 'AddTodoForm';
+import AddTodo from '../../containers/AddTodo';
 
-describe('AddTodoForm', () => {
+describe('AddTodo', () => {
 
   it('should exist', () => {
     expect(AddTodoForm).toExist();
   });
 
-  it('should call onAddTodo with valid data', () => {
+  it('should call onAddTodo when valid input', () => {
     let text = 'check add todo functionality',
     spy = expect.createSpy(),
-    addTodoForm = ReactTestUtils.renderIntoDocument(<AddTodoForm onAddTodo={spy}/>),
+    addTodoForm = ReactTestUtils.renderIntoDocument(AddTodoForm({onAddTodo:spy})),
     $el = $(ReactDOM.findDOMNode(addTodoForm)); 
 
-    addTodoForm.refs.text.value = text;
+    // addTodoForm.refs.text.value = text;
+    $el.find('input').val(text);
     ReactTestUtils.Simulate.submit($el.find('form')[0]);
 
     expect(spy).toHaveBeenCalledWith(text);
 
   });
 
-  it('should NOT call onAddTodo with invalid data', () => {
+  it('should NOT call onAddTodo when invalid todd text', () => {
     let text = '',
     spy = expect.createSpy(),
-    addTodoForm = ReactTestUtils.renderIntoDocument(<AddTodoForm onAddTdod={spy} />),
+    addTodoForm = ReactTestUtils.renderIntoDocument(AddTodoForm({onAddTodo: spy})),
     $el = $(ReactDOM.findDOMNode(addTodoForm));
 
-    addTodoForm.refs.text.value = text;
+    // addTodoForm.refs.text.value = text;
+    $el.find('input').val(text);
     ReactTestUtils.Simulate.submit($el.find('form')[0]);
 
     expect(spy).toNotHaveBeenCalled();
