@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import VisibleItemList from '../containers/VisibleItemList';
 import AddTodo from '../containers/AddTodo';
-import SearchTodos from 'SearchTodos';
+import Search from '../containers/Search';
 import TodoAPI from 'TodoAPI';
 
 class TodoApp extends React.Component {
@@ -53,7 +53,7 @@ class TodoApp extends React.Component {
         <div className="row">
           <div className="column small-centered small-11 medium-6 large-5">
             <div className="container">
-              <SearchTodos onSearch={this.handleSearch} />
+              <Search />
               <VisibleItemList />
               <AddTodo />
             </div>

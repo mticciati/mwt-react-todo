@@ -1,45 +1,44 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class SearchTodos extends Component {
+const SearchTodos = ({onSearch}) => {
 
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.handleSearch = this.handleSearch.bind(this);
-  }
-
-  handleSearch() {
+  //   this.handleSearch = this.handleSearch.bind(this);
+  // }
+  let input, completed;
+  const handleSearch = (e) => {
     let data = {
-      showCompleted: this.refs.showCompleted.checked,
-      searchText: this.refs.searchText.value
+      showCompleted: completed.checked,
+      searchText: input.value
     };
 
-    this.props.onSearch(data);
+    onSearch(data);
   }
 
-  render() {
+  // render() {
     return (
       <div className="container__header">
         <div>
           <input 
             type="search" 
-            ref="searchText"
+            ref={node => {input = node}}
             placeholder="Search todos" 
-            onChange={this.handleSearch} /> 
+            onChange={(e) => handleSearch(e)} /> 
         </div>
         <div>
           <label>
             <input 
               type="checkbox"
-              ref="showCompleted"
-              onChange={this.handleSearch}/>
+              ref={node => {completed = node}}
+              onChange={(e) => handleSearch(e)}/>
             Show completed todos
           </label>
         </div>
       </div>
-    );
-  }
+    )
 
 }
 
