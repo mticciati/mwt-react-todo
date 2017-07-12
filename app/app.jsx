@@ -18,8 +18,8 @@ store.subscribe(() => {
 });
 
 store.dispatch(actions.addTodo('Bow to the cat'));
-store.dispatch(actions.setSearchText('cat'));
-store.dispatch(actions.toggleShowCompleted());
+// store.dispatch(actions.setSearchText('cat'));
+
 
 //browser history
 const history = createBrowserHistory();

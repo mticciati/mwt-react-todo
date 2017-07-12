@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SearchTodos = ({onSearch}) => {
+const SearchTodos = ({showCompleted, searchText, onSearch, onToggle}) => {
 
   // constructor(props) {
   //   super(props);
 
   //   this.handleSearch = this.handleSearch.bind(this);
   // }
-  let input, completed;
+  let input;
   const handleSearch = (e) => {
-    let data = {
-      showCompleted: completed.checked,
-      searchText: input.value
-    };
+    // let data = {
+    //   showCompleted: completed.checked,
+    //   searchText: input.value
+    // };
 
-    onSearch(data);
+    onSearch(input.value);
   }
 
   // render() {
@@ -25,6 +25,7 @@ const SearchTodos = ({onSearch}) => {
           <input 
             type="search" 
             ref={node => {input = node}}
+            value={searchText}
             placeholder="Search todos" 
             onChange={(e) => handleSearch(e)} /> 
         </div>
@@ -32,8 +33,8 @@ const SearchTodos = ({onSearch}) => {
           <label>
             <input 
               type="checkbox"
-              ref={node => {completed = node}}
-              onChange={(e) => handleSearch(e)}/>
+              checked={showCompleted}
+              onChange={() => onToggle()}/>
             Show completed todos
           </label>
         </div>

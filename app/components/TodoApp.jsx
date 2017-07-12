@@ -46,6 +46,8 @@ class TodoApp extends React.Component {
 
   render() {
     let {todos, showCompleted, searchText} = this.state;
+    console.log(showCompleted);
+    console.log(searchText);
     let filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
     return (
       <div>

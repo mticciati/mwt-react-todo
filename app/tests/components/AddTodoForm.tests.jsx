@@ -5,7 +5,7 @@ import expect, {createSpy} from 'expect';
 var $ = require('jQuery');
 
 import AddTodoForm from 'AddTodoForm';
-import AddTodo from '../../containers/AddTodo';
+//import AddTodo from '../../containers/AddTodo';
 
 describe('AddTodo', () => {
 
