@@ -19,7 +19,6 @@ describe('AddTodo', () => {
     addTodoForm = ReactTestUtils.renderIntoDocument(AddTodoForm({onAddTodo:spy})),
     $el = $(ReactDOM.findDOMNode(addTodoForm)); 
 
-    // addTodoForm.refs.text.value = text;
     $el.find('input').val(text);
     ReactTestUtils.Simulate.submit($el.find('form')[0]);
 
@@ -33,7 +32,6 @@ describe('AddTodo', () => {
     addTodoForm = ReactTestUtils.renderIntoDocument(AddTodoForm({onAddTodo: spy})),
     $el = $(ReactDOM.findDOMNode(addTodoForm));
 
-    // addTodoForm.refs.text.value = text;
     $el.find('input').val(text);
     ReactTestUtils.Simulate.submit($el.find('form')[0]);
 

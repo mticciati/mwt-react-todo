@@ -37,6 +37,7 @@ module.exports = {
       ItemList: 'app/components/ItemList.jsx',
       Item: 'app/components/Item.jsx',
       AddTodoForm: 'app/components/AddTodoForm.jsx',
+      ClearTodosForm: 'app/components/ClearTodosForm.jsx',
       SearchTodos: 'app/components/SearchTodos.jsx',
       TodoAPI: 'app/api/TodoAPI.jsx',
       applicationStyles: 'app/styles/app.scss'
