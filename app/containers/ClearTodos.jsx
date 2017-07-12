@@ -1,5 +1,6 @@
 import React from 'react';
 import {clearTodos} from '../actions/actions';
+import {connect} from 'react-redux';
 
 import ClearTodosForm from 'ClearTodosForm';
 
