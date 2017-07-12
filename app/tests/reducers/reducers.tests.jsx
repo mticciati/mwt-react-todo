@@ -66,6 +66,27 @@ describe('Reducers', () => {
       expect(res[0].completedAt).toEqual(undefined);
     });
 
+    it('should add existing todos', () => {
+      let todos = [
+        {
+          id: 1,
+          text: 'Bow to the cat',
+          completed: true,
+          createdAt: 123,
+          completedAt: 144
+        }
+      ];
+      let action = {
+        type: 'ADD_TODOS',
+        todos
+      };
+      let res = reducers.todosReducer([], deepFreeze(action));
+
+      expect(res.length).toEqual(1);
+      expect(res[0]).toEqual(todos[0]);
+
+    });
+
   });
   
 

@@ -37,6 +37,8 @@ export const todosReducer = (state = [], action) => {
         ...state,
         ...action.todos
       ];
+    case 'CLEAR_TODOS': 
+      return;
     case 'TOGGLE_TODO': 
       return state.map((todo) => {
         if (todo.id === action.id) {

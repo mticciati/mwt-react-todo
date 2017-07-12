@@ -43,5 +43,13 @@ module.exports = {
     });
 
     return filteredTodos;
+  },
+
+  clearTodos: function() {
+    localStorage.removeItem('todos');
+    if (localStorage.getItem('todos') !== null) {
+      return false;
+    }
+    return true;
   }
 }

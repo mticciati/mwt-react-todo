@@ -20,8 +20,6 @@ store.subscribe(() => {
   TodoAPI.setTodos(state.todos);
 });
 
-// store.dispatch(actions.addTodo('Bow to the cat'));
-
 const initialTodos = TodoAPI.getTodos();
 store.dispatch(actions.addTodos(initialTodos));
 

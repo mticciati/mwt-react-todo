@@ -62,4 +62,13 @@ describe('Actions', () => {
     expect(res).toEqual(action);
   });
 
+  it('should generate clear todo action', () => {
+    let action = {
+      type: 'CLEAR_TODOS'
+    };
+    let res = actions.clearTodos();
+
+    expect(res).toEqual(action);
+  });
+
 });

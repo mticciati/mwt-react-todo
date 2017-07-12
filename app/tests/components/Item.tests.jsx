@@ -40,7 +40,6 @@ describe('Item', () => {
       </Wrapper>
     );
     let $el = $(ReactDOM.findDOMNode(instance));
-    console.log($el);
     ReactTestUtils.Simulate.click($el[0]);
     expect(spy).toHaveBeenCalled();
 

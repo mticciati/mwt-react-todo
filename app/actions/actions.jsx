@@ -19,6 +19,12 @@ export const addTodos = (todos) => {
   }
 }
 
+export const clearTodos = () => {
+  return {
+    type: 'CLEAR_TODOS'
+  }
+}
+
 export const toggleShowCompleted = () => {
   return {
     type: 'TOGGLE_SHOW_COMPLETED'

@@ -107,4 +107,23 @@ describe('TodoAPI', () => {
 
   });
 
+  describe('clearTodos', () =>{
+
+    it('should clear todos from localStorage', () => {
+      let todos = [{
+        id: 121,
+        text: 'test',
+        completed: false
+      }];
+      localStorage.setItem('todos', JSON.stringify(todos));
+
+      let res = TodoAPI.clearTodos();
+      console.log(localStorage.getItem('todos'));
+
+      expect(res).toEqual(true);
+      expect(localStorage.getItem('todos')).toEqual(null);
+    });
+
+  });
+
 });
