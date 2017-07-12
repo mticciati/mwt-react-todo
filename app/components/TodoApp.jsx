@@ -12,8 +12,6 @@ class TodoApp extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.handleAddTodo = this.handleAddTodo.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
     this.state = {
       todos: TodoAPI.getTodos(),
       showCompleted: false,
@@ -25,29 +23,8 @@ class TodoApp extends React.Component {
     TodoAPI.setTodos(this.state.todos);
   }
 
-  handleSearch(data) {
-    this.setState(data);
-  }
-
-  // handleAddTodo(text) {
-  //   this.setState({
-  //     todos: [
-  //       ...this.state.todos,
-  //       {
-  //         id: uuid(), 
-  //         text: text,
-  //         completed: false,
-  //         createdAt: moment().unix(),
-  //         completedAt: undefined
-  //       }
-  //     ]
-  //   });
-  // }
-
   render() {
     let {todos, showCompleted, searchText} = this.state;
-    console.log(showCompleted);
-    console.log(searchText);
     let filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
     return (
       <div>

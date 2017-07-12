@@ -1,38 +1,32 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import TodoAPI from 'TodoAPI';
 
 import Item from 'Item';
 
-const renderItems = (items, onToggle) => {
-  if (items.length === 0) {
+const renderItems = (state, onToggle) => {
+  let {todos, showCompleted, searchText} = state;
+  if (todos.length === 0) {
     return (
       <p className="container__message">Nothing To Do!</p>
     );
   }
   return (
-    items.map((item) => <Item key={item.id} {...item} onToggle={() => onToggle(item.id)} />)
+    TodoAPI.filterTodos(todos, showCompleted, searchText)
+      .map((item) => <Item key={item.id} {...item} onToggle={() => onToggle(item.id)} />)
   );
 }
 
-const ItemList = ({items, onToggle}) => (
+const ItemList = ({state, onToggle}) => (
   <div>
     <div className="item-list">
-      {renderItems(items, onToggle)}
+      {renderItems(state, onToggle)}
     </div>
   </div> 
 )
 
 ItemList.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      completed: PropTypes.bool.isRequired,
-      text: PropTypes.string.isRequired,
-      createdAt: PropTypes.number,
-      completedAt: PropTypes.number
-    }).isRequired
-  ).isRequired,
   onToggle: PropTypes.func.isRequired
 }
 

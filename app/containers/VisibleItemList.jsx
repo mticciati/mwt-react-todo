@@ -4,7 +4,7 @@ import ItemList from 'ItemList';
 
 const mapStateToProps = (state) => {
   return {
-    items: state.todos
+    state
   }
 }
 
