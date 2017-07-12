@@ -7,6 +7,7 @@ import {Provider} from 'react-redux';
 import TodoApp from 'TodoApp';
 import * as actions from './actions/actions';
 import {configure} from './store/configureStore';
+import TodoAPI from 'TodoAPI';
 
 //Load Foundation
 $(document).foundation();
@@ -14,12 +15,15 @@ $(document).foundation();
 //Store
 let store = configure();
 store.subscribe(() => {
-  console.log('New State', store.getState());
+  let state = store.getState();
+  console.log('New State', state);
+  TodoAPI.setTodos(state.todos);
 });
 
-store.dispatch(actions.addTodo('Bow to the cat'));
-// store.dispatch(actions.setSearchText('cat'));
+// store.dispatch(actions.addTodo('Bow to the cat'));
 
+const initialTodos = TodoAPI.getTodos();
+store.dispatch(actions.addTodos(initialTodos));
 
 //browser history
 const history = createBrowserHistory();

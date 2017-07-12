@@ -19,13 +19,7 @@ class TodoApp extends React.Component {
     };
   }
 
-  componentDidUpdate() {
-    TodoAPI.setTodos(this.state.todos);
-  }
-
   render() {
-    let {todos, showCompleted, searchText} = this.state;
-    let filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
     return (
       <div>
         <h1 className="page-title">TodoApp</h1>
