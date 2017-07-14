@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addTodo} from '../actions/actions';
+import {startAddTodo} from '../actions/actions';
 
 import AddTodoForm from 'AddTodoForm';
 
 function mapDispatchToProps (dispatch) {
   return {
     onAddTodo: (text) => {
-      dispatch(addTodo(text))
+      dispatch(startAddTodo(text))
     }
   }
 }

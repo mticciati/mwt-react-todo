@@ -38,12 +38,17 @@ describe('Reducers', () => {
     it ('should add new todo', () => {
       let action = {
         type: 'ADD_TODO',
-        text: 'Bow to the cat',
+        todo: {
+          id: '123',
+          text: 'hello',
+          completed: false,
+          createdAt: 123
+        }
       };
       let res = reducers.todosReducer(deepFreeze([]), deepFreeze(action));
 
       expect(res.length).toEqual(1);
-      expect(res[0].text).toEqual(action.text);
+      expect(res[0]).toEqual(action.todo);
     });
 
     it('should toggle todo completed', () => {

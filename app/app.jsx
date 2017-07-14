@@ -21,6 +21,7 @@ store.subscribe(() => {
 });
 
 const initialTodos = TodoAPI.getTodos();
+console.log('initialTodos', initialTodos);
 store.dispatch(actions.addTodos(initialTodos));
 
 //browser history

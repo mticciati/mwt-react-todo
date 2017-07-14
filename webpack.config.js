@@ -33,6 +33,7 @@ module.exports = {
   resolve: {
     modules: [__dirname, 'node_modules'],
     alias: {
+      app: 'app',
       TodoApp: 'app/components/TodoApp.jsx',
       ItemList: 'app/components/ItemList.jsx',
       Item: 'app/components/Item.jsx',

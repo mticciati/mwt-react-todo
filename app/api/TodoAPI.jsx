@@ -1,4 +1,5 @@
 import $ from 'jQuery';
+
 module.exports = {
   setTodos: function (todos) {
     if ($.isArray(todos)) {
@@ -16,7 +17,9 @@ module.exports = {
     } catch (e) {
 
     }
+
     return $.isArray(todos) ? todos : [];
+    
   },
 
   filterTodos: function(todos, showCompleted, searchText) {
