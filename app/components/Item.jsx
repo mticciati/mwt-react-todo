@@ -20,7 +20,8 @@ const Item = ({id, completed, text, createdAt, completedAt, onToggle}) => {
       <div>
         <input 
           type="checkbox"
-          defaultChecked={completed}
+          checked={completed}
+          onChange={() => {}}
         />
       </div>
       <div>

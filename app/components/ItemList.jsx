@@ -14,7 +14,7 @@ const renderItems = (state, onToggle) => {
   }
   return (
     TodoAPI.filterTodos(todos, showCompleted, searchText)
-      .map((item) => <Item key={item.id} {...item} onToggle={() => onToggle(item.id)} />)
+      .map((item) => <Item key={item.id} {...item} onToggle={() => onToggle(item.id, item.completed)} />)
   );
 }
 

@@ -53,9 +53,24 @@ export const toggleShowCompleted = () => {
   }
 };
 
-export const toggleTodo = (id) => {
+export const updateTodo = (id, updates) => {
   return {
-    type: 'TOGGLE_TODO',
-    id
+    type: 'UPDATE_TODO',
+    id,
+    updates
+  }
+}
+
+export const startToggleTodo = (id, completed) => {
+  return (dispatch, getState) => {
+    const todoRef = firebaseRef.child(`todos/${id}`);
+    let updates = {
+      completed, 
+      completedAd: completed ? moment().unix() : null
+    };
+
+    todoRef.update(updates).then(() => {
+      dispatch(updateTodo(id, updates));
+    });
   }
 }
