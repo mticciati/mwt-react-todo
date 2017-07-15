@@ -122,7 +122,6 @@ describe('Actions', () => {
 
       store.dispatch(action).then(() => {
         const mockActions = store.getActions();
-        
         expect(mockActions[0]).toInclude({
           type: 'UPDATE_TODO',
           id: testTodoRef.key
@@ -130,10 +129,10 @@ describe('Actions', () => {
         expect(mockActions[0].updates).toInclude({
           completed: true
         });
-        expect(mockActions[0].updates.completeAt).toExist();
+        expect(mockActions[0].updates.completedAt).toExist();
 
         done();
-      }, done);
+      }).catch(done);
     });
 
   });
