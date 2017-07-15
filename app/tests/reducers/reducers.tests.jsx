@@ -51,7 +51,7 @@ describe('Reducers', () => {
       expect(res[0]).toEqual(action.todo);
     });
 
-    it('should toggle todo completed', () => {
+    it('should update todo completed', () => {
       let todos = [
         {
           id: 1,
@@ -61,14 +61,20 @@ describe('Reducers', () => {
           completedAt: 144
         }
       ];
+      let updates = {
+        completed: false,
+        completedAt: null
+      };
       let action = {
-        type: 'TOGGLE_TODO',
-        id: 1
+        type: 'UPDATE_TODO',
+        id: todos[0].id,
+        updates
       };
       let res = reducers.todosReducer(deepFreeze(todos), deepFreeze(action));
 
-      expect(res[0].completed).toEqual(false);
-      expect(res[0].completedAt).toEqual(undefined);
+      expect(res[0].completed).toEqual(updates.completed);
+      expect(res[0].completedAt).toEqual(updates.completedAt);
+      expect(res[0].text).toEqual(todos[0].text);
     });
 
     it('should add existing todos', () => {

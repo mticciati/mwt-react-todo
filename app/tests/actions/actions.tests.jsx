@@ -77,12 +77,15 @@ describe('Actions', () => {
     expect(res).toEqual(action);
   });
 
-  it('should generate toggle todo action', () => {
+  it('should generate update todo action', () => {
     let action = {
-      type: 'TOGGLE_TODO',
-      id: 12
+      type: 'UPDATE_TODO',
+      id: 12,
+      updates: {
+        completed: false
+      }
     };
-    let res = actions.toggleTodo(12);
+    let res = actions.updateTodo(action.id, action.updates);
 
     expect(res).toEqual(action);
   });
