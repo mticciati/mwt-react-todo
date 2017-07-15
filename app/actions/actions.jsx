@@ -69,7 +69,7 @@ export const startToggleTodo = (id, completed) => {
       completedAd: completed ? moment().unix() : null
     };
 
-    todoRef.update(updates).then(() => {
+    return todoRef.update(updates).then(() => {
       dispatch(updateTodo(id, updates));
     });
   }
