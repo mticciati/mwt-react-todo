@@ -41,6 +41,24 @@ export const addTodos = (todos) => {
   }
 }
 
+export const startAddTodos = () => {
+  return (dispatch, getState) => {  
+    return firebaseRef.child('todos')
+      .once('value')
+      .then((snapshot) => {
+        let todos = snapshot.val() || {};
+        let parsedTodos = [];
+        Object.keys(todos).forEach((todoId) => {
+          parsedTodos.push({
+            id: todoId,
+            ...todos[todoId]
+          })
+        });
+        dispatch(addTodos(parsedTodos));
+      });
+  }
+}
+
 export const clearTodos = () => {
   return {
     type: 'CLEAR_TODOS'

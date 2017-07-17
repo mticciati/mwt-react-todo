@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import TodoAPI from 'TodoAPI';
 
+import LoadingSpinner from 'LoadingSpinner';
+import TodoAPI from 'TodoAPI';
 import Item from 'Item';
 
 const renderItems = (state, onToggle) => {
@@ -21,7 +22,10 @@ const renderItems = (state, onToggle) => {
 const ItemList = ({state, onToggle}) => (
   <div>
     <div className="item-list">
-      {renderItems(state, onToggle)}
+      {state.todos.length === 0 ? 
+        <LoadingSpinner /> :
+        renderItems(state, onToggle)
+      }
     </div>
   </div> 
 )

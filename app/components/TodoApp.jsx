@@ -6,7 +6,6 @@ import VisibleItemList from '../containers/VisibleItemList';
 import AddTodo from '../containers/AddTodo';
 import ClearTodos from '../containers/ClearTodos';
 import Search from '../containers/Search';
-import TodoAPI from 'TodoAPI';
 
 class TodoApp extends React.Component {
 
@@ -14,10 +13,10 @@ class TodoApp extends React.Component {
     super(props);
 
     this.state = {
-      todos: TodoAPI.getTodos(),
       showCompleted: false,
       searchText: ''
     };
+
   }
 
   render() {

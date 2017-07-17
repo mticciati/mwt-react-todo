@@ -14,15 +14,7 @@ $(document).foundation();
 
 //Store
 let store = configure();
-store.subscribe(() => {
-  let state = store.getState();
-  console.log('New State', state);
-  TodoAPI.setTodos(state.todos);
-});
-
-const initialTodos = TodoAPI.getTodos();
-console.log('initialTodos', initialTodos);
-store.dispatch(actions.addTodos(initialTodos));
+store.dispatch(actions.startAddTodos());
 
 //browser history
 const history = createBrowserHistory();

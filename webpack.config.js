@@ -35,6 +35,7 @@ module.exports = {
     alias: {
       app: 'app',
       TodoApp: 'app/components/TodoApp.jsx',
+      LoadingSpinner: 'app/components/LoadingSpinner.jsx',
       ItemList: 'app/components/ItemList.jsx',
       Item: 'app/components/Item.jsx',
       AddTodoForm: 'app/components/AddTodoForm.jsx',
