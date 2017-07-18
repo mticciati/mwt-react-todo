@@ -8,14 +8,14 @@ import Item from 'Item';
 
 const renderItems = (state, onToggle) => {
   let {todos, showCompleted, searchText} = state;
-  if (todos.length === 0) {
+  let filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
+  if (filteredTodos.length === 0) {
     return (
       <p className="container__message">Nothing To Do!</p>
     );
   }
   return (
-    TodoAPI.filterTodos(todos, showCompleted, searchText)
-      .map((item) => <Item key={item.id} {...item} onToggle={() => onToggle(item.id, item.completed)} />)
+    filteredTodos.map((item) => <Item key={item.id} {...item} onToggle={() => onToggle(item.id, item.completed)} />)
   );
 }
 
