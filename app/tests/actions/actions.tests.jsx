@@ -142,6 +142,22 @@ describe('Actions', () => {
       }).catch(done);
     });
 
+    it('should populate todos dispatch ADD_TODOS', (done) => {
+      const store = createMockStore({});
+      const action = actions.startAddTodos();
+
+      store.dispatch(action).then((snapshot) => {
+        const mockActions = store.getActions();
+        expect(mockActions[1]).toInclude({
+          type: 'ADD_TODOS'
+        });
+
+        expect(mockActions[1].todos[0].text).toEqual('Test Todo');
+
+        done();
+      }).catch(done);
+    });
+
   });
 
 });
