@@ -72,6 +72,8 @@ describe('ItemList', () => {
     );
     let $el = $(ReactDOM.findDOMNode(provider));
 
+    console.log($el);
+
     expect($el.find('.container__message').length).toBe(1);
   });
 

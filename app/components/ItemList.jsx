@@ -22,7 +22,7 @@ const renderItems = (state, onToggle) => {
 const ItemList = ({state, onToggle}) => (
   <div>
     <div className="item-list">
-      {state.todos.length === 0 ? 
+      {state.fetching === true ? 
         <LoadingSpinner /> :
         renderItems(state, onToggle)
       }

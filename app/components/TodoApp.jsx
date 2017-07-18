@@ -14,7 +14,8 @@ class TodoApp extends React.Component {
 
     this.state = {
       showCompleted: false,
-      searchText: ''
+      searchText: '',
+      isFetching: false
     };
 
   }

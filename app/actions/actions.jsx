@@ -34,6 +34,18 @@ export const startAddTodo = (text) => {
   }
 }
 
+export const fetching = () => {
+  return {
+    type: 'FETCHING'
+  }
+}
+
+export const doneFetching = () => {
+  return {
+    type: 'DONE_FETCHING'
+  }
+}
+
 export const addTodos = (todos) => {
   return {
     type: 'ADD_TODOS',
@@ -42,7 +54,8 @@ export const addTodos = (todos) => {
 }
 
 export const startAddTodos = () => {
-  return (dispatch, getState) => {  
+  return (dispatch, getState) => {
+    dispatch(fetching());  
     return firebaseRef.child('todos')
       .once('value')
       .then((snapshot) => {
@@ -55,6 +68,7 @@ export const startAddTodos = () => {
           })
         });
         dispatch(addTodos(parsedTodos));
+        dispatch(doneFetching());
       });
   }
 }

@@ -104,12 +104,19 @@ describe('Actions', () => {
     let testTodoRef;
 
     beforeEach((done) => {
-      testTodoRef = firebaseRef.child('todos').push();
-      testTodoRef.set({
-        text: 'Test Todo',
-        completed: false,
-        createdAt: 123
-      }).then(() => done());
+      let todosRef = firebaseRef.child('todos');
+
+      todosRef.remove().then(() => {
+        testTodoRef = firebaseRef.child('todos').push();
+        return testTodoRef.set({
+          text: 'Test Todo',
+          completed: false,
+          createdAt: 123
+        });
+      })
+      .then(() => done())
+      .catch(done);
+
     });
 
     afterEach((done) => {

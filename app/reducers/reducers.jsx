@@ -25,6 +25,10 @@ export const todosReducer = (state = [], action) => {
         ...state,
         action.todo
       ];
+    case 'FETCHING_TODOS':
+      return {
+        isFetching: true
+      }
     case 'ADD_TODOS':
       return [
         ...state,
@@ -43,6 +47,17 @@ export const todosReducer = (state = [], action) => {
           return todo;
         }
       })
+    default:
+      return state;
+  }
+}
+
+export const fetchingReducer = (state = {fetching: false}, action) => {
+  switch(action.type) {
+    case 'FETCHING':
+      return true;
+    case 'DONE_FETCHING':
+      return false;
     default:
       return state;
   }
