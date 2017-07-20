@@ -1,6 +1,5 @@
 import React from 'react';
-import uuid from 'uuid';
-import moment from 'moment';
+import {connect} from 'react-redux';
 
 import VisibleItemList from '../containers/VisibleItemList';
 import AddTodo from '../containers/AddTodo';
@@ -38,4 +37,4 @@ class TodoApp extends React.Component {
 
 }
 
-export default TodoApp;
+export default connect()(TodoApp);
