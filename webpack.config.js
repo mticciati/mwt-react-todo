@@ -58,7 +58,7 @@ module.exports = {
     alias: {
       app: 'app',
       TodoApp: 'app/components/TodoApp.jsx',
-      App: 'app/components/App.jsx',
+      AppWithRouter: 'app/components/App.jsx',
       LoadingSpinner: 'app/components/LoadingSpinner.jsx',
       ItemList: 'app/components/ItemList.jsx',
       Item: 'app/components/Item.jsx',

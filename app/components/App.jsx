@@ -1,7 +1,9 @@
 import React from 'react';
+import {withRouter} from 'react-router';
 import {Route, NavLink} from 'react-router-dom';
 import {startLogout} from '../actions/actions';
 import {connect} from 'react-redux';
+import firebase from 'app/firebase/';
 
 import LoginContainer from '../containers/LoginContainer';
 import TodoApp from 'TodoApp';
@@ -10,7 +12,17 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.props.history.push('/todos');
+      } else {
+        this.props.history.push('/');
+      }
+    });
+
     this.onLogout = this.onLogout.bind(this);
+
   }
 
   onLogout(e) {
@@ -23,12 +35,7 @@ class App extends React.Component {
   render() {
     return  (
       <div>
-        <div className="page-actions">
-          <NavLink 
-            exact to="/" 
-            activeClassName="active" 
-            activeStyle={{fontWeight: 'bold'}}
-          >Login</NavLink>  
+        <div className="page-actions"> 
           <NavLink 
             exact to="/" 
             activeClassName="active" 
@@ -52,4 +59,6 @@ class App extends React.Component {
   }
 } 
 
-export default connect()(App);
+const AppWithRouter = withRouter(connect()(App));
+
+export default AppWithRouter;

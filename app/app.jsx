@@ -1,12 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import createBrowserHistory from 'history/createBrowserHistory';
+import {BrowserRouter as Router} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
-// import Login from 'Login';
-// import TodoApp from 'TodoApp';
-import App from 'App';
+import AppWithRouter from 'AppWithRouter';
 import * as actions from './actions/actions';
 import {configure} from './store/configureStore';
 import TodoAPI from 'TodoAPI';
@@ -18,15 +15,14 @@ $(document).foundation();
 let store = configure();
 store.dispatch(actions.startAddTodos());
 
-//browser history
-const history = createBrowserHistory();
+
 //app css
 require('style-loader!css-loader!sass-loader!applicationStyles');
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
-      <App />
+    <Router>
+      <AppWithRouter />
     </Router>
   </Provider>,
   document.getElementById("app")
