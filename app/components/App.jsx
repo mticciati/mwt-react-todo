@@ -1,12 +1,13 @@
 import React from 'react';
 import {withRouter} from 'react-router';
-import {Route, NavLink} from 'react-router-dom';
-import {startLogout} from '../actions/actions';
+import {NavLink} from 'react-router-dom';
+import {startLogout} from 'app/actions/actions';
 import {connect} from 'react-redux';
 import firebase from 'app/firebase/';
 
-import LoginContainer from '../containers/LoginContainer';
-import TodoApp from 'TodoApp';
+// import LoginContainer from '../containers/LoginContainer';
+// import TodoApp from 'TodoApp';
+import Routes from 'app/routes/';
 
 class App extends React.Component {
 
@@ -50,8 +51,7 @@ class App extends React.Component {
         </div>
         <div className="row">
           <div className="column small-centered small-11 medium-6 large-5">
-            <Route exact path="/" component={LoginContainer}/>
-            <Route path="/todos" component={TodoApp}/>
+            <Routes/>
           </div>
         </div> 
       </div>
