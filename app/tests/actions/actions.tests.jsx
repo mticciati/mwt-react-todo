@@ -5,22 +5,22 @@ import firebase, {firebaseRef} from 'app/firebase/';
 
 import * as actions from '../../actions/actions';
 
-let createMockStore = configureMockStore([thunk]);
+const createMockStore = configureMockStore([thunk]);
 
 describe('Actions', () => {
 
   it('should generate search text action', () => {
-    let action = {
+    const action = {
       type: 'SET_SEARCH_TEXT',
       searchText: 'Some text'
     };
-    let res = actions.setSearchText(action.searchText);
+    const res = actions.setSearchText(action.searchText);
 
     expect(res).toEqual(action);
   });
 
   it('should generate add todo action', () => {
-    let action = {
+    const action = {
       type: 'ADD_TODO',
       todo: {
         id: '123',
@@ -29,7 +29,7 @@ describe('Actions', () => {
         createdAt: 123
       }
     };
-    let res = actions.addTodo(action.todo);
+    const res = actions.addTodo(action.todo);
 
     expect(res).toEqual(action);
   });
@@ -60,44 +60,80 @@ describe('Actions', () => {
         createdAt: 123
       }
     ];
-    let action = {
+    const action = {
       type: 'ADD_TODOS',
       todos
     };
-    let res = actions.addTodos(todos);
+    const res = actions.addTodos(todos);
 
     expect(res).toEqual(action);
   });
 
   it('should generate toggle show completed action', () => {
-    let action = {
+    const action = {
       type: 'TOGGLE_SHOW_COMPLETED'
     };
-    let res = actions.toggleShowCompleted();
+    const res = actions.toggleShowCompleted();
 
     expect(res).toEqual(action);
   });
 
   it('should generate update todo action', () => {
-    let action = {
+    const action = {
       type: 'UPDATE_TODO',
       id: 12,
       updates: {
         completed: false
       }
     };
-    let res = actions.updateTodo(action.id, action.updates);
+    const res = actions.updateTodo(action.id, action.updates);
 
     expect(res).toEqual(action);
   });
 
   it('should generate clear todo action', () => {
-    let action = {
+    const action = {
       type: 'CLEAR_TODOS'
     };
-    let res = actions.clearTodos();
+    const res = actions.clearTodos();
 
     expect(res).toEqual(action);
+  });
+
+  it('should generate LOGIN action', () => {
+    const action = {
+      type: 'LOGIN',
+      uid: '123abc'
+    }
+
+    const res = actions.login(action.uid);
+    expect(res).toEqual(action);
+  });
+
+  it('should generate LOGOUT action', () => {
+    const action = {
+      type: 'LOGOUT'
+    }
+
+    const res = actions.logout();
+    expect(res).toEqual(action);
+  });
+
+  it('should store auth uid and dispatch LOGIN', (done) => {
+    const store = createMockStore({});
+
+    store.dispatch(actions.startLogin()).then((result) => {
+      const mockActions = store.getActions();
+      console.log(mockActions);
+      console.log(result);
+
+      // expect(mockActions[0]).toInclude({
+      //   type: 'LOGIN'
+      // });
+      // expect(mockActions[0].uid).toExist();
+
+      done();
+    }).catch(done);
   });
 
   describe('Tests with firebase todos', () => {

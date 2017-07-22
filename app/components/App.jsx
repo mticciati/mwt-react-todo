@@ -5,8 +5,6 @@ import {startLogout} from 'app/actions/actions';
 import {connect} from 'react-redux';
 import firebase from 'app/firebase/';
 
-// import LoginContainer from '../containers/LoginContainer';
-// import TodoApp from 'TodoApp';
 import Routes from 'app/routes/';
 
 class App extends React.Component {

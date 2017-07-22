@@ -9,11 +9,11 @@ describe('Reducers', () => {
   describe('searchTextReducer', () => {
 
     it('should generate search text', () => {
-    let action = {
+    const action = {
       type: 'SET_SEARCH_TEXT',
       searchText: 'Car'
     };
-    let res = reducers.searchTextReducer(deepFreeze(''), deepFreeze(action));
+    const res = reducers.searchTextReducer(deepFreeze(''), deepFreeze(action));
 
     expect(res).toEqual(action.searchText);
   });
@@ -23,10 +23,10 @@ describe('Reducers', () => {
   describe('showCompletedReducer', () => {
 
     it('should toggle showCompleted', () => {
-      let action = {
+      const action = {
         type: 'TOGGLE_SHOW_COMPLETED'
       };
-      let res = reducers.showCompletedReducer(deepFreeze(false), deepFreeze(action));
+      const res = reducers.showCompletedReducer(deepFreeze(false), deepFreeze(action));
 
       expect(res).toBe(true);
     });
@@ -36,7 +36,7 @@ describe('Reducers', () => {
   describe('todosReducer', () => {
 
     it ('should add new todo', () => {
-      let action = {
+      const action = {
         type: 'ADD_TODO',
         todo: {
           id: '123',
@@ -45,7 +45,7 @@ describe('Reducers', () => {
           createdAt: 123
         }
       };
-      let res = reducers.todosReducer(deepFreeze([]), deepFreeze(action));
+      const res = reducers.todosReducer(deepFreeze([]), deepFreeze(action));
 
       expect(res.length).toEqual(1);
       expect(res[0]).toEqual(action.todo);
@@ -65,12 +65,12 @@ describe('Reducers', () => {
         completed: false,
         completedAt: null
       };
-      let action = {
+      const action = {
         type: 'UPDATE_TODO',
         id: todos[0].id,
         updates
       };
-      let res = reducers.todosReducer(deepFreeze(todos), deepFreeze(action));
+      const res = reducers.todosReducer(deepFreeze(todos), deepFreeze(action));
 
       expect(res[0].completed).toEqual(updates.completed);
       expect(res[0].completedAt).toEqual(updates.completedAt);
@@ -87,17 +87,46 @@ describe('Reducers', () => {
           completedAt: 144
         }
       ];
-      let action = {
+      const action = {
         type: 'ADD_TODOS',
         todos
       };
-      let res = reducers.todosReducer([], deepFreeze(action));
+      const res = reducers.todosReducer([], deepFreeze(action));
 
       expect(res.length).toEqual(1);
       expect(res[0]).toEqual(todos[0]);
 
     });
 
+  });
+
+
+  describe('authReducer', () => {
+    it('should store uid on LOGIN', () => {
+      const action = {
+        type: 'LOGIN',
+        uid: '123abc'
+      }
+
+      const res = reducers.authReducer(undefined, deepFreeze(action));
+
+      expect(res).toEqual({
+        uid: action.uid
+      });
+    });
+
+    it('should wipe auth on LOGOUT', () => {
+      const authData = {
+        uid: '123abc'
+      }
+      const action = {
+        type: 'LOGOUT'
+      }
+
+      const res = reducers.authReducer(deepFreeze(authData), deepFreeze(action));
+
+      expect(res).toEqual({});
+    });
   });
   
 

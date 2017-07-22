@@ -4,6 +4,7 @@ import * as reducers from '../reducers/reducers';
 
 export const configure = (initialState = {}) => {
   const reducer = combineReducers({
+    auth: reducers.authReducer,
     fetching: reducers.fetchingReducer,
     searchText: reducers.searchTextReducer,
     showCompleted: reducers.showCompletedReducer,
