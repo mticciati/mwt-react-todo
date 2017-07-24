@@ -6,7 +6,8 @@
   "scripts": {
     "test": "NODE_ENV=test karma start",
     "build": "webpack",
-    "start": "npm run build && node server.js"
+    "start": "node server.js",
+    "postinstall": "npm run build" 
   },
   "author": "Matthew Ticciati",
   "license": "MIT",
