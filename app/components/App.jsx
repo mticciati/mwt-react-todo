@@ -3,6 +3,8 @@ import {withRouter} from 'react-router';
 import {NavLink} from 'react-router-dom';
 import {startLogout} from 'app/actions/actions';
 import {connect} from 'react-redux';
+import {configure} from '../store/configureStore';
+import {startAddTodos} from '../actions/actions';
 import firebase from 'app/firebase/';
 
 import Routes from 'app/routes/';
@@ -11,15 +13,15 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        let store = configure();
+        store.dispatch(startAddTodos());
         this.props.history.push('/todos');
       } else {
         this.props.history.push('/');
       }
     });
-
     this.onLogout = this.onLogout.bind(this);
 
   }

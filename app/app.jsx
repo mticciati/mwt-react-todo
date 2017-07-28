@@ -13,8 +13,6 @@ $(document).foundation();
 
 //Store
 let store = configure();
-store.dispatch(actions.startAddTodos());
-
 
 //app css
 require('style-loader!css-loader!sass-loader!applicationStyles');
