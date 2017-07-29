@@ -61,6 +61,13 @@ describe('TodoAPI', () => {
       expect(filteredTodos.length).toBe(2);
     });
 
+    it('should return todos with text that includes uppercase searchText', () => {
+      let searchText = 'Test';
+      let filteredTodos = TodoAPI.filterTodos(todos, true, searchText);
+
+      expect(filteredTodos.length).toBe(2);
+    });
+
   });
 
   describe('clearTodos', () =>{
