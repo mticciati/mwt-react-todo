@@ -7,9 +7,10 @@ module.exports = {
     filteredTodos = filteredTodos.filter((todo) => !todo.completed || showCompleted);
 
     // filter by searchText
-    if (searchText.length > 0) {
-     filteredTodos = filteredTodos.filter((todo) => todo.text.toLowerCase().includes(searchText));
-    }
+    filteredTodos = filteredTodos.filter((todo) => {
+      let text = todo.text.toLowerCase();
+      return searchText === 0 || text.indexOf(searchText.toLowerCase()) > -1;
+    });
 
     // sort todos by non-completed first
     filteredTodos.sort((a, b) => {
