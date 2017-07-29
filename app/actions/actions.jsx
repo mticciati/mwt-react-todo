@@ -81,6 +81,21 @@ export const clearTodos = () => {
   }
 }
 
+export const startClearTodos = () => {
+  return (dispatch, getState) => {
+    dispatch(fetching());
+    const uid = getState().auth.uid;
+    const todoRef = firebaseRef.child(`users/${uid}/`);
+    let set = {
+      todos: {}
+    };
+    return todoRef.set(set).then(() => {
+      dispatch(clearTodos());
+      dispatch(doneFetching());
+    });
+  }
+}
+
 export const toggleShowCompleted = () => {
   return {
     type: 'TOGGLE_SHOW_COMPLETED'

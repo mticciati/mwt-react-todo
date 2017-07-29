@@ -98,6 +98,43 @@ describe('Reducers', () => {
 
     });
 
+    it('should wipe todos on LOGOUT', () => {
+      let todos = [
+        {
+          id: 1,
+          text: 'Bow to the cat',
+          completed: true,
+          createdAt: 123,
+          completedAt: 144
+        }
+      ];
+      const action = {
+        type: 'LOGOUT',
+      };
+      const res = reducers.todosReducer(deepFreeze(todos), deepFreeze(action));
+
+      expect(res.length).toEqual(0);
+
+    });
+
+    it('should wipe todos on ClEAR_TODOS', () => {
+      let todos = [
+        {
+          id: 1,
+          text: 'Bow to the cat',
+          completed: true,
+          createdAt: 123,
+          completedAt: 144
+        }
+      ];
+      const action = {
+        type: 'CLEAR_TODOS'
+      };
+      const res = reducers.todosReducer(deepFreeze(todos), deepFreeze(action));
+
+      expect(res.length).toEqual(0);
+    });
+
   });
 
 

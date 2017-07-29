@@ -12,12 +12,12 @@ describe('ClearTodosForm', () => {
     expect(ClearTodosForm).toExist();
   });
 
-  it('should call onClear when submitted', () => {
+  it('should call onClearTodos when submitted', () => {
     let spy = expect.createSpy();
-    let form = ReactTestUtils.renderIntoDocument(ClearTodosForm({onClear: spy}));
+    let form = ReactTestUtils.renderIntoDocument(ClearTodosForm({onClearTodos: spy}));
 
     let $el = $(ReactDOM.findDOMNode(form));
-    ReactTestUtils.Simulate.submit($el.find('form')[0]);
+    ReactTestUtils.Simulate.click($el.find('button')[0]);
 
     expect(spy).toHaveBeenCalled();
   });

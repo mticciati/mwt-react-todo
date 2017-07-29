@@ -1,13 +1,13 @@
 import React from 'react';
-import {clearTodos} from '../actions/actions';
+import {startClearTodos} from '../actions/actions';
 import {connect} from 'react-redux';
 
 import ClearTodosForm from 'ClearTodosForm';
 
 function mapDispatchToProps (dispatch) {
   return {
-    onClear: () => {
-      dispatch(clearTodos())
+    onClearTodos: () => {
+      dispatch(startClearTodos())
     }
   }
 }

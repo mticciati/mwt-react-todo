@@ -1,25 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ClearTodosForm = ({onClear}) => {
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onClear();
-  }
+const ClearTodosForm = ({onClearTodos}) => {
 
   return (
     <div className="container__footer">
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <button className="button expanded alert">Clear Todos</button>
-      </form>
+      <button className="button expanded alert" onClick={onClearTodos}>Clear Todos</button>
     </div>
   )
 
 }
 
 ClearTodosForm.PropTypes = {
-  onClear: PropTypes.func.isRequired
+  onClearTodos: PropTypes.func.isRequired
 }
 
 export default ClearTodosForm;

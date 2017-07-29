@@ -35,15 +35,8 @@ class App extends React.Component {
         <div className="page-actions"> 
           <NavLink 
             exact to="/" 
-            activeClassName="active" 
-            activeStyle={{fontWeight: 'bold'}}
             onClick={this.onLogout}
           >Logout</NavLink>  
-          <NavLink 
-            to="/todos" 
-            activeClassName="active" 
-            activeStyle={{fontWeight: 'bold'}}
-          >Todos</NavLink>
         </div>
         <div className="row">
           <div className="column small-centered small-11 medium-6 large-5">

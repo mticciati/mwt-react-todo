@@ -103,23 +103,6 @@ describe('Actions', () => {
     expect(res).toEqual(action);
   });
 
-  it('should store auth uid and dispatch LOGIN', (done) => {
-    const store = createMockStore({});
-
-    store.dispatch(actions.startLogin()).then((result) => {
-      const mockActions = store.getActions();
-      console.log(mockActions);
-      console.log(result);
-
-      // expect(mockActions[0]).toInclude({
-      //   type: 'LOGIN'
-      // });
-      // expect(mockActions[0].uid).toExist();
-
-      done();
-    }).catch(done);
-  });
-
   describe('Tests with firebase todos', () => {
     let testTodoRef, uid, todosRef;
 
@@ -189,16 +172,29 @@ describe('Actions', () => {
       const todoText = 'Bow to the cat';
 
       store.dispatch(actions.startAddTodo(todoText)).then(() => {
-        const actions = store.getActions();
-        expect(actions[0]).toInclude({
+        const mockActions = store.getActions();
+        expect(mockActions[0]).toInclude({
           type: 'ADD_TODO'
         });
-        expect(actions[0].todo).toInclude({
+        expect(mockActions[0].todo).toInclude({
           text: todoText
         });
         done();
       }).catch(done);
-  });
+    });
+
+    it('should clear todos and dispatch CLEAR_TODOS', (done) => {
+      const store = createMockStore({auth: {uid}});
+
+      store.dispatch(actions.startClearTodos()).then(() => {
+        const mockActions = store.getActions();
+        expect(mockActions[1]).toInclude({
+          type: 'CLEAR_TODOS'
+        });
+        console.log(mockActions);
+        done();
+      }).catch(done);
+    });
 
   });
 
