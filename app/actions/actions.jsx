@@ -123,6 +123,7 @@ export const startLogin = () => {
     return firebase.auth().signInWithPopup(githubProvider).then((result) => {
       console.log('Auth worked', result);
       dispatch(login(result.user.uid));
+      dispatch(startAddTodos());
     }, (e) => {
       console.log('Unable to auth', e);
     });
